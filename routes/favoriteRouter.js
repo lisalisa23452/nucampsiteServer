@@ -27,9 +27,11 @@ favoriteRouter.route('/')
     })
     .then(favorite => {
         if (favorite) {
+            req.body.forEach(fav => {
             if (favorite.campsites.indexOf(favorite._id) === -1) {
                 favorite.campsites.push(favorite._id)
                 }
+            })
                 favorite.save()
                     .then(favorite => {
                     res.statusCode = 200;
